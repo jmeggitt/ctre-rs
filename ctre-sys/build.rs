@@ -9,10 +9,10 @@ const LIB_LIST: &[&str] = &[
     "NiRioSrv",
     "RoboRIO_FRC_ChipObject",
     "visa",
+//    "./lib/libCTRE_Phoenix.so",
 ];
 
 fn main() {
-    println!("cargo:rustc-link-lib=static=CTRE_PhoenixCCI");
     for lib in LIB_LIST {
         println!("cargo:rustc-link-lib=dylib={}", lib);
     }
