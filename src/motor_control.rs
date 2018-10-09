@@ -1,4 +1,6 @@
 //! Support for motor controllers (Talon SRX and Victor SPX).
+use std::fmt::*;
+use std::cmp::PartialEq;
 
 use ctre_sys::mot::*;
 pub use ctre_sys::mot::{
@@ -1088,6 +1090,25 @@ impl BaseMotorController for TalonSRX {
         self.arb_id
     }
 }
+
+impl Debug for TalonSRX {
+    fn fmt(&self, f: &mut Formatter) ->  std::result::Result<(), std::fmt::Error>  {
+        write!(f, "TalonSRX(id={})", self.get_device_id())
+    }
+}
+
+impl Display for TalonSRX {
+    fn fmt(&self, f: &mut Formatter) ->  std::result::Result<(), std::fmt::Error> {
+        write!(f, "TalonSRX(id={})", self.get_device_id())
+    }
+}
+
+impl PartialEq for TalonSRX {
+    fn eq(&self, other: &TalonSRX) -> bool {
+        self.get_device_id() == other.get_device_id()
+    }
+}
+
 
 impl TalonSRX {
     /**
